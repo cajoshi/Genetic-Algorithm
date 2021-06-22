@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Project</title>
+    <link rel="stylesheet" href="css/tailwind.css">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Container  -->
+    <div class="mx-40 bg-white mb-20 p-10 rounded-xl shadow-md mt-10">
+        <div class="text-center text-3xl max-w-prose">
+            Predicting autism in adults using Logistic Regression, Decision Tree and Optimizing using Genetic Algorithm
+        </div>
+        <div class="grid grid-cols-4 text-center mt-16">
+            <span>Bhavesh Gulabani </span>
+            <span>Chinmay Joshi</span>
+            <span>Saurabh Damle</span>
+            <span>Shubhankar Gengaje</span>
+        </div>
+        <!-- <div class="mt-20">
+            <h1 class="text-xl font-semibold text-gray-500">TITLE</h1>
+            <span class="text-lg">Predict autism in Adults using Logistic Regression decision tree and genetic algorithm</span>
+        </div> -->
+
+        <div class="mt-32">
+            <h1 class="text-xl font-semibold text-gray-500">DATASET USED</h1>
+            <span class="text-lg">Autism Screening Adult Data Set</span> <br>
+            <a class="underline" href="https://archive.ics.uci.edu/ml/datasets/Autism+Screening+Adult" target="_blank">https://archive.ics.uci.edu/ml/datasets/Autism+Screening+Adult</a>
+        </div>
+
+        <div class="mt-10">
+            <h1 class="text-xl font-semibold text-gray-500">ALGORITHMS USED</h1>
+            <span class="text-lg">Logistic Regression, Decision Tree and Genetic Algorithm</span>
+        </div>
+
+        <div class="mt-10">
+            <h1 class="text-xl font-semibold text-gray-500">Code</h1>
+            <a class="underline" href="SCOA-Project-New-Autism-Adult-Testing.html" target="_blank">Link to Code</a>
+        </div>
+
+        
+        <div class="relative mt-40 grid grid-cols-8">
+            <div class="absolute col-span-2 text-right grid gap-10 py-4">
+                <div class="text-xl hover:text-blue-300 cursor-pointer text-blue-600" onclick="{makeVisible('about')}" id="about-head">About The <br> Dataset</div>
+                <div class="text-xl hover:text-blue-300 cursor-pointer" onclick="{makeVisible('cleaning')}" id="cleaning-head">Cleaning The <br> Dataset</div>
+                <div class="text-xl hover:text-blue-300 cursor-pointer" onclick="{makeVisible('correlation')}" id="correlation-head">Correlation Matrix</div>
+                <div class="text-xl hover:text-blue-300 cursor-pointer" onclick="{makeVisible('lo+ga')}" id="lo+ga-head">Logistic Regression + <br> Genetic Algorithm</div>
+                <div class="text-xl hover:text-blue-300 cursor-pointer" onclick="{makeVisible('dt+ga')}" id="dt+ga-head">Decision Tree Classifier <br>+ Genetic Algorithm</div>
+            </div>
+            <!-- About the dataset -->
+            <div class="p-6 col-start-3 col-span-6 border-2 rounded-xl mb-28" id="about">
+                <span class="text-lg">In this dataset, they record ten behavioural features (AQ-10-Adult) plus ten individuals characteristics that have proved to be effective in detecting the ASD cases from controls in behaviour science.</span>
+                <img class="mt-10" src="images/head-1.png" alt="">
+            </div>
+
+            <!-- Cleaning the Dataset -->
+            <div class="hidden p-6 col-start-3 col-span-6 border-2 rounded-xl" id="cleaning">
+                <div class="text-lg">The dataset was not clean and some columns had irregular values like a ‘b’ in their value as you can see below</div>
+                <img class="mt-10" src="images/head-1-new.png" alt="">
+                <div class="block mt-10 text-lg">After Cleaning the data we can see that the ‘b’ is removed from all the values and we can work on the data</div>
+                <img class="mt-10" src="images/head-2.png" alt="">
+                <div class="mt-10 text-lg">After scanning the data we found that the columns ‘ethnicity’ and ‘relation’ had missing values and they totaled to 190
+                so we dropped those rows from the dataset so the dimensions change from</div>
+                <div class="text-center mt-10 text-3xl">(704, 21) &nbsp;&nbsp;&nbsp;&nbsp; to &nbsp;&nbsp;&nbsp;&nbsp; (514, 21)</div>
+                <div class="mt-10 text-lg">All the numbers were stored as a string so we converted them to int</div>
+                <img class="mt-10" src="images/transform-data.png" alt="">
+                <div class="mt-10 text-lg">Then we enumerated attributes like ethnicity, austim, jundice and gender which concluded our data cleaning</div>
+                <img class="mt-10" src="images/enumerate-data.png" alt="">
+            </div>
+
+            <!-- Correlation Matrix -->
+            <div class="hidden p-6 col-start-3 col-span-6 border-2 rounded-xl" id="correlation">
+                <div class="text-lg">We used the correlation matrix to find out the relation between the attributes</div>
+                <img class="mt-10 w-full" src="images/correlation-matrix.png" alt="">
+                <div class="block mt-10 text-lg">To select the most ‘related’ values we kept the threshold value as 0.3 and got the following columns that affect the
+                target value the most</div>
+                <div class="grid text-center mt-28 px-20">
+                    <div class="grid grid-cols-2 text-2xl font-semibold border-b-2 pb-2">
+                        <div>Attribute</div>
+                        <div>Correlation Value</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>A2_Score</div>
+                        <div>0.335059</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>A3_Score</div>
+                        <div>0.435016</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>A4_Score</div>
+                        <div>0.470414</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>A5_Score</div>
+                        <div>0.550717</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>A6_Score</div>
+                        <div>0.606399</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>A7_Score</div>
+                        <div>0.355280</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>A9_Score</div>
+                        <div>0.641386</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>A10_Score</div>
+                        <div>0.377310</div>
+                    </div>
+                    <div class="grid grid-cols-2 text-lg py-2">
+                        <div>ethnicity</div>
+                        <div>0.321277</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logistic + GA -->
+            <div class="hidden p-6 col-start-3 col-span-6 border-2 rounded-xl" id="lo+ga">
+                <div class="text-lg">We split the dataset into train and test in the ratio 7:3 and passed it through the Logistic Regression and got the
+                following accuracy</div>
+                <div class="grid grid-cols-12 gap-8 items-end mt-10 font-semibold">
+                    <div class="text-right text-xl font-semibold text-gray-400 col-span-2">Accuracy</div>
+                    <div class="text-3xl col-start-3 col-span-3">96.72% </div>
+                </div>
+                <div class="mt-10 text-lg">We split the dataset into train and test in the ratio 7:3 and passed it through the Logistic Regression and got the following accuracy</div>
+                <div class="mt-10 font-semibold">
+                    <h1 class="text-xl font-semibold text-gray-500">Values of Parameters</h1>
+                    <div class="grid grid-cols-12 gap-8 items-end mt-10">
+                        <div class="text-right text-xl font-normal text-gray-400 col-span-3">Size</div>
+                        <div class="text-3xl col-start-4">200</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right  text-xl font-normal text-gray-400 col-span-3">Parents</div>
+                        <div class="text-3xl col-start-4">100</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right text-xl font-normal text-gray-400 col-span-3">Mutation Rate</div>
+                        <div class="text-3xl col-start-4">0.1</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right  text-xl font-normal text-gray-400 col-span-3">Generations</div>
+                        <div class="text-3xl col-start-4">5</div>
+                    </div>
+                </div>
+                
+                <div class="mt-16 font-semibold">
+                    <h1 class="text-xl font-semibold text-gray-500">Result</h1>
+                    <div class="grid grid-cols-12 gap-8 items-end mt-10">
+                        <div class="text-right text-xl font-normal text-gray-400 col-span-3">Accuracy</div>
+                        <div class="text-3xl col-start-4 col-span-3">96.72%<span class="text-lg text-red-400">+0%</span></div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right  text-xl font-normal text-gray-400 col-span-3">Max Error</div>
+                        <div class="text-3xl col-start-4">1</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right text-xl font-normal text-gray-400 col-span-3">MSE</div>
+                        <div class="text-3xl col-start-4">0.03278688524590164</div>
+                    </div>
+                </div>
+                <div class="mt-10 text-lg">As you can see that the value did not change at all after applying the genetic algorithm</div>
+            </div>
+
+            <!-- Decision + GA -->
+            <div class="hidden p-6 col-start-3 col-span-6 border-2 rounded-xl" id="dt+ga">
+                <div class="text-lg">We split the dataset into train and test in the ratio 7:3 and passed it through the Logistic
+                    Regression and got the
+                    following accuracy</div>
+                <div class="grid grid-cols-12 gap-8 items-end mt-10 font-semibold">
+                    <div class="text-right text-xl font-semibold text-gray-400 col-span-2">Accuracy</div>
+                    <div class="text-3xl col-start-3 col-span-3">91.8% </div>
+                </div>
+                <div class="mt-10 text-lg">We split the dataset into train and test in the ratio 7:3 and passed it through the
+                    Logistic Regression and got the following accuracy</div>
+                <div class="mt-10 font-semibold">
+                    <h1 class="text-xl font-semibold text-gray-500">Values of Parameters</h1>
+                    <div class="grid grid-cols-12 gap-8 items-end mt-10">
+                        <div class="text-right text-xl font-normal text-gray-400 col-span-3">Size</div>
+                        <div class="text-3xl col-start-4">200</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right  text-xl font-normal text-gray-400 col-span-3">Parents</div>
+                        <div class="text-3xl col-start-4">100</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right text-xl font-normal text-gray-400 col-span-3">Mutation Rate</div>
+                        <div class="text-3xl col-start-4">0.1</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right  text-xl font-normal text-gray-400 col-span-3">Generations</div>
+                        <div class="text-3xl col-start-4">5</div>
+                    </div>
+                </div>
+            
+                <div class="mt-16 font-semibold">
+                    <h1 class="text-xl font-semibold text-gray-500">Result</h1>
+                    <div class="grid grid-cols-12 gap-8 items-end mt-10">
+                        <div class="text-right text-xl font-normal text-gray-400 col-span-3">Accuracy</div>
+                        <div class="text-3xl col-start-4 col-span-3">94.5%<span class="text-lg text-green-400">+2.7%</span></div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right  text-xl font-normal text-gray-400 col-span-3">Max Error</div>
+                        <div class="text-3xl col-start-4">1</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-8 items-end">
+                        <div class="text-right text-xl font-normal text-gray-400 col-span-3">MSE</div>
+                        <div class="text-3xl col-start-4">0.0546448087431694</div>
+                    </div>
+                </div>
+                <div class="mt-10 text-lg">We can see a significant increase in the accuracy after applying the genetic algorithm
+                </div>
+            </div>
+
+        </div>       
+
+    </div>
+</body>
+
+<script src="js/index.js"></script>
+
+</html>
